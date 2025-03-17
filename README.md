@@ -1,4 +1,4 @@
-# Compilation Instructions
+ompilation Instructions
 
 This document provides step-by-step instructions for compiling the project.
 
@@ -34,6 +34,22 @@ Before compiling, set the following environment variables:
 export FP4D_PLATFORM=HNUC   # Set this to the target environment (e.g., HNUC, KAIROS)
 export FP4D_ROOT=/path/to/project   # Set this to the root directory of the project
 ```
+
+## Creating a Custom Makefile
+
+If you need to create a custom `Makefile` for a new environment, place it in the following directory:
+
+```sh
+${FP4D_ROOT}/platforms
+```
+
+The `Makefile` should be named as follows:
+
+```sh
+makefile.${FP4D_PLATFORMS}
+```
+
+where `${FP4D_PLATFORMS}` corresponds to the name of the target environment (e.g., `HNUC`, `KAIROS`).
 
 ## Compilation Steps
 

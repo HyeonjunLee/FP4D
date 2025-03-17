@@ -1,0 +1,30 @@
+# KAIROS (Nuclear Fusion and Plasma Computational Laboratory of Hanyang University).
+
+# Set command for fortran compiler:
+FC = ftn -qmkl -qopenmp
+#FC = ftn
+
+# Set C compiler for eqmodule:
+CC = cc
+
+# Set command for linker:
+FLINKER = ftn -qmkl -qopenmp
+
+# Any other flags for compiling, such as -I include flags: # add lumfpack for eqmodule
+EXTRA_COMPILE_FLAGS = \
+    -I${NETCDF_DIR}/include \
+    -I${HDF5_DIR}/include \
+
+# Any other flags for linking, such as -l library flags: # add lumfpack for eqmodule
+EXTRA_LINK_FLAGS  = \
+    -L/${MKLROOT}/lib \
+    -lmkl_blacs_intelmpi_lp64 \
+    -lmkl_scalapack_lp64 \
+    -lpthread -liomp5 \
+    -L${NETCDF_DIR}/lib -lnetcdf_parallel \
+    -L${HDF5_DIR}/lib -lhdf5 \
+    -lumfpack
+
+# CFLAG for eqmodule
+# Deffine "FLAG_KAIROS" for "#include <umfpack.h>" in cnst-srt.h & umfpack-util.c
+CFLAGS = -O3 -DFLAG_KAIROS=1

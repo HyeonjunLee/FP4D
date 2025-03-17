@@ -1,0 +1,59 @@
+# -*- mode: makefile -*-
+EQMODULE_DIRS = ../tools/eqmodule
+
+OBJ_FILES =  \
+        ${EQMODULE_DIRS}/cnst-srt.o		\
+	${EQMODULE_DIRS}/diag-gen.o 	\
+	${EQMODULE_DIRS}/dqag.o 		\
+	${EQMODULE_DIRS}/geom-cir.o 	\
+        ${EQMODULE_DIRS}/geqdsk.o 		\
+	${EQMODULE_DIRS}/RZ-grid.o 		\
+	${EQMODULE_DIRS}/umfpack-util.o \
+	${EQMODULE_DIRS}/xth-grid.o		\
+        ${EQMODULE_DIRS}/eqmodule.o 	\
+		omp_module.o 		my_mpi.o 			blacs_mod.o \
+		readInput.o			readHDF5Input.o		readNetCDFInput.o		writeHDF5Output.o \
+		FP4D_globals.o		FP4D_init.o 		FP4D_timer_lib.o		FP4D_Post.o	 	  \
+		FP4D_math.o 		FP4D_equilibrium.o 	f_module.o				RHS_module.o      \
+		quasi_f_module.o 	col_f_module.o		imp_RHS.o		 		elliptics.o		  \
+		h5_rdwt.o			spline_interpolation.o \
+		fp4d.o
+
+## Dependencies:
+# eqmodule
+${EQMODULE_DIRS}/eqmodule.o: FP4D_globals.o
+FP4D_equilibrium.o: ${EQMODULE_DIRS}/eqmodule.o FP4D_globals.o FP4D_math.o
+
+# mpi
+my_mpi.o: 		   FP4D_globals.o
+
+# read input & write output
+readInput.o: 	   FP4D_globals.o
+readHDF5Input.o:   FP4D_globals.o
+readNetCDFInput.o: FP4D_globals.o
+writeHDF5Output.o: FP4D_globals.o
+
+FP4D_math.o: 	   FP4D_globals.o
+FP4D_Post.o: 	   FP4D_globals.o FP4D_math.o
+FP4D_init.o: 	   FP4D_globals.o FP4D_timer_lib.o
+FP4D_timer_lib.o:  FP4D_globals.o
+
+f_module.o:  	   FP4D_globals.o FP4D_math.o
+RHS_module.o:  	   FP4D_globals.o FP4D_math.o omp_module.o 
+quasi_f_module.o:  FP4D_globals.o FP4D_math.o omp_module.o 
+
+
+# collision module
+col_f_module.o:    FP4D_globals.o  	omp_module.o    \
+				   elliptics.o		h5_rdwt.o		\
+				   spline_interpolation.o 
+imp_RHS.o: 		   FP4D_globals.o omp_module.o 
+spline_interpolation.o:  h5_rdwt.o
+
+
+fp4d.o:  \
+	omp_module.o 		my_mpi.o 			blacs_mod.o \
+	readInput.o 		readHDF5Input.o 	readNetCDFInput.o 	writeHDF5Output.o \
+	FP4D_globals.o 		FP4D_init.o 		FP4D_timer_lib.o 	FP4D_Post.o  	  \
+	FP4D_equilibrium.o	f_module.o			RHS_module.o		quasi_f_module.o  \
+	col_f_module.o		imp_RHS.o

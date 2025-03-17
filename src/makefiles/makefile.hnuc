@@ -1,0 +1,33 @@
+# HNUC (Nuclear Fusion and Plasma Computational Laboratory of Hanyang University).
+
+# Set command for fortran compiler:
+FC = mpiifort -mkl -qopenmp
+
+# Set C compiler for eqmodule:
+CC = mpiicc
+
+# Set command for linker:
+FLINKER = mpiifort -mkl -qopenmp
+
+# Any other flags for compiling, such as -I include flags: # add lumfpack for eqmodule
+EXTRA_COMPILE_FLAGS = \
+    -I/opt/netcdf/4.4.5-intel/include \
+    -I${HDF5_DIR}/include \
+    -I/opt/intel/oneapi/mkl/2021.2.0/include/ 
+
+# Any other flags for linking, such as -l library flags: # add lumfpack for eqmodule
+EXTRA_LINK_FLAGS  = \
+    -L/${MKLROOT}/lib -L${MKLROOT}/lib \
+    -lmkl_intel_lp64 \
+    -lmkl_blacs_intelmpi_lp64 \
+    -lmkl_scalapack_lp64 \
+    -lmkl_sequential \
+    -lmkl_core \
+    -lpthread -liomp5 \
+    -L/opt/netcdf/4.4.5-intel/lib -lnetcdff \
+    -L${HDF5_DIR}/lib -lhdf5 -lhdf5_hl \
+    -lhdf5_fortran -lhdf5hl_fortran \
+    -lumfpack
+
+# CFLAG for eqmodule
+CFLAGS = -O3

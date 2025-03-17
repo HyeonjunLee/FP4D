@@ -1,0 +1,123 @@
+&opt_param
+opt_Col     = 1         ! on    include Q(f)
+opt_PS      = 1         ! on
+opt_0M      = 1         ! off
+opt_APS     = 0
+opt_QLD     = 0         ! 1: explicit (RHS)    2: implicit(Col)
+opt_NB      = 0
+opt_global  = 0         ! 3: global for toric... specific case
+opt_restart = 0
+opt_PS_aux=1
+opt_QLD_dist = 0 ! 0:analytic f0, 1:numerical f0, 2:f0+f1
+opt_QLD_aux=1001
+opt_Potential=-1
+opt_time_solver=-1 !0: Euler 1:RK45
+opt_time_species=1
+!special_tau_W=1
+special_tau_He3=0
+opt_rotation=0
+omega_rot_in=0
+/
+&time_param
+! time idx start from 0
+sml_dt         = 1D-3
+sml_nstep   = 2D4
+start_step_Col = 0      
+step_Col       = 40     ! default : 1        
+start_step_RHS = 0
+on_RHS         = 1      !default : 1
+cycle_RHS      = 1      ! default : 1
+/
+&phy_param
+! The electron must always be included.
+! The electron must be the first species.
+sml_mass    = 5.448d-4  2D0     
+sml_charge  = -1D0      1D0     
+sml_den     = 1D20   1D20    
+sml_t_ev    = 1D3       1D3     
+sml_flow    = 0.0       0.0     0.0
+sml_Epar    = 0D0       0D0     0D0
+sml_isp     = 0        ! maxwellian species : e, D, T, 
+sml_nsp     = 1        ! general    species : He-3
+dlnn_dr     = -1D0     -1D0     -1D0    -1D0
+dlnT_dr     = -1D0     -1D0     -1D0    -1D0
+! sml_isp = 0 => whole species are general species
+! sml_isp /=0 
+!   => 0       ~ sml_isp-1   : maxwellian species
+!   => sml_isp ~ sml_nsp     : general species
+/
+&APS_param
+sml_source_t_ev=1D3 1D3 1D3
+sml_source_den=0D12 0D12 0D14
+sml_source_width=1D0
+APS_sp=4
+/
+&NB_param
+NB_sp=4
+/
+&QLD_param
+mx_sp       = 2         ! ??
+RF_kpar     = 0D0   0D0     0D0     0.5D0
+RF_omega    = 0D0   0D0     0D0     0D0
+RF_W0       = 0D0   0D0     0D0     1D14
+RF_width    = 0.1D0 0.1D0 0.1D0
+! RF_n @ opt_QLd=1 (explicit)
+!   n=0 -> Landau,      n=1 -> cyclotron 
+! RF_n @ opt_QLd=2 (implicit w/ TORIC)
+!   n=0 -> w/o heating, n=1 -> w/ heating
+RF_n_harmonic        = 0 0 0 1                   
+pwrscale    = 6.76D6      ! good
+/
+&eqb_param
+sml_eqb_opt=1
+/
+&f_param
+f_nvp           = 50
+f_nmu           = 50
+f_vp_max        = 5D0
+f_smu_max       = 5D0
+f_velo_aniso    = 1D0 !0.7D0
+/
+&PS_param
+itmax           = 100 ! tmp
+fw=1d0
+fr=4d0
+sup_val2=10     ! used only Epar ? 
+sup_step2=1     ! used only Epar ?
+/
+&col_f_param
+col_f_nthreads  = 48
+neg_frac        = 0.5D0             ! ??
+den_converge    = 1D-8              ! Default : 1D-8
+ene_converge    = 1D-8              ! Default : 1D-8
+col_iteration = 5        ! collision iteration (default : 9999)
+! momentum converge criterion is special
+/
+&out_param
+out_h5          = 1
+out_step        = 1000
+/
+&geo_param
+  npsi=1
+  nth=16
+  ifd0=3
+  ifd1=27
+  op_geo_info=0
+  ipe=0 !  youknow - | 0 : print on | 1: print off 
+  xx0=0.4
+  xx1=0.5
+  q0=1.4
+!  q1=0
+!  q2=0
+!  q3=0
+!  q4=0
+  a0=0.5
+  R0=1.8
+  B0=1.8
+!  ase_q0=1.4
+!  ase_R0=0.48
+!  ase_B0=1.3
+!  ase_kappa=1.9
+!  ase_del=1.5
+!  ase_shift=0
+/

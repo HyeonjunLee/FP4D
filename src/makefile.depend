@@ -1,5 +1,5 @@
 # -*- mode: makefile -*-
-EQMODULE_DIRS = ../tools/eqmodule
+EQMODULE_DIRS = ${FP4D_ROOT}/tools/eqmodule
 
 OBJ_FILES =  \
         ${EQMODULE_DIRS}/cnst-srt.o		\

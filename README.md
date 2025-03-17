@@ -1,50 +1,34 @@
-bsolver.F90 은 #include 라는 전처리기 명령어를 통해 포함된 것이라 makefile 에는 포함 X
-    해당 코드를 그대로 복사하는 역할을 함.
+- Libraries for FP4D
+    1) intel compiler
+    2) NetCDF
+    3) HDF5
+    4) ....
+  You can use the GNU compiler, but in that case,
+  the rest of the library must also be compiled through the GNU compiler.
 
-blacs_mod.F90
-    사용하진 않으나 혹시 모르니 냅둠.
+- How do you run it?
+   qsub submit_fp4d_mpi.sh
 
-/FP4D/
-─ makefile
-    # makefile
-- makefile.depend
-    # OBJ_FILES & Dependencies
-- makefiles/
-    # 각 환경에서 compile 옵션 및 링크.
-    - makefile.hnuc
-    - makefile.kairos
-- module_FP4D
-    # module list to compile FP4D in hnuc env.
-- module_FP4D_kairos
-    # module list to compile FP4D in kairos env.
-─ eqmodule/
-    "준혁이 형이 만들어줌. eqmodule.F90 에 의해 묶임."
-    eqmodule/eqmodule.F90
-    eqmodule/cnst-srt.c
-    eqmodule/cnst-srt.h
-    eqmodule/xth-grid.c
-    eqmodule/umfpack-util.c
-    eqmodule/RZ-grid.c
-    eqmodule/dqag.c
-    eqmodule/geqdsk.c
-    eqmodule/geom-cir.c
-    eqmodule/diag-gen.c
-- etc
-    "사용하진 않음"
-    interpol.f
-- fp4d.F90 # main program
+- How do I check the result?
+    USE THE PLOT TOOL THROUGH JUPYTER NOTEBOOK
+      module load anaconda
+      jupyter notebook
 
--	omp_module.F90  # omp module
-    my_mpi.F90 	    # mpi module
-    blacs_mod.F90   # 사용하진 않으나 혹시 몰라 냅둠
-    # 모듈들
-    readInput.F90		readHDF5Input.F90	    readNetCDFInput.F90		writeHDF5Output.F90 
-    FP4D_globals.F90	FP4D_init.F90 		    FP4D_timer_lib.F90		FP4D_Post.F90	 	  
-    FP4D_math.F90 		FP4D_equilibrium.F90 	f_module.F90			RHS_module.F90      
-    quasi_f_module.F90 			 		
-    # 이하 collision 관련 모듈
-    col_f_module.F90	imp_RHS.F90	
-    elliptics.F90		h5_rdwt.F90			    spline_interpolation.F90 
-    bsolver.F90     # include 라는 전처리기 명령어를 통해 포함된 것이라 makefile 에는 포함 X
+   /home/youknow/python/FP4D/v3_2/v3_2_example.ipynb
 
->>>>>>> Add README file
+///FP4D///
+  1) You can compile this code by running "make" in the top-level directory.
+  2) The default compilation environments provided are 'HNUC' and 'KAIROS'.
+     For other environments, you need to manually modify the 'Makefile'
+     to compile successfully.
+
+///eqmodule/// courtesy to J. Song
+  BlaBlaBla
+
+///Miscellaneous///
+  1) "blacs_mod.F90" in src
+    Not currently used.
+  2) "interpol.f" in src
+    Not currently used.
+  3) "blacs_mod.F90"
+    Not currently uesd.

@@ -15,18 +15,11 @@
 !  FFFF             PPPP                         4444 DDDDDDDDDDDDD
 !  FFFF             PPPP                         4444 DDDDDDDDDDDD
 !
-!  This version is Alpha_0.7v            Date: Jan. 03. 2024
+!  This version is alpha 1.1                     Date: Mar. 17. 2025
 !  
-!  Updated version is :   Alpha_0.1v - Added Particle Source/Sink
-!                              _0.2v - Added Quasi-linear RF
-!                              _0.3v - Added NB Heating
-!                              _0.4v - Added Relativistic Collision
-!                              _0.5v - Added DC Electric Field
-!                              _0.6v - Added Parallel Streaming Term
-!                                      in Circular Geometry
-!                              _0.7v - Add 0 order Drift Term
-!                         
-!  Contact: Hyeonjun Lee (hyeonjun@hanyang.ac.kr)
+!  Contact: Hyeonjun   Lee (hyeonjun@hanyang.ac.kr)
+!              Yunho Jeong (   yunho@hanyang.ac.kr)
+!            Jungpyo   Lee ( jungpyo@hanyang.ac.kr)
 !----------------------------------------------------------------------
 !----------------------------------------------------------------------
 !                     |  Library Dependency  |
@@ -110,7 +103,7 @@ program FP4D
     print*,'FFFFFFFFFFFFFFFF PPPPPPPPPPPPPPPP 4444444444444444 DDDD       DDDD'
     print*,'FFFFFFFFFFFFFFFF PPPPPPPPPPPPPPPP 4444444444444444 DDDD       DDDD'
     print*,'FFFF             PPPP                         4444 DDDD       DDDD'
-    print*,'FFFF  Alpha0.7v  PPPP      Hanyang Univ.      4444 DDDD      DDDD'
+    print*,'FFFF  Alpha 1.1  PPPP      Hanyang Univ.      4444 DDDD      DDDD'
     print*,'FFFF             PPPP  Nuclear Fusion and     4444 DDDDDDDDDDDDD'
     print*,'FFFF             PPPP  Plasma Computation LAB 4444 DDDDDDDDDDDD'
     print*,'----------------------------------------------------------------------'

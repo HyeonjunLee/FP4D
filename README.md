@@ -1,4 +1,4 @@
-ompilation Instructions
+# Compilation Instructions
 
 This document provides step-by-step instructions for compiling the project.
 

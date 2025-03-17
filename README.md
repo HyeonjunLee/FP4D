@@ -32,19 +32,11 @@ For a clean build, use:
 ```sh
 make clean && make
 ```
-To install the compiled binaries:
-```sh
-make install
-```
 
 ## Running the Executable
 After compilation, run the program with:
 ```sh
-./output_file [arguments]
-```
-For Windows:
-```sh
-output_file.exe [arguments]
+./FP4D [arguments]
 ```
 
 ## Additional Notes
@@ -59,20 +51,19 @@ output_file.exe [arguments]
 For further details, refer to the project documentation or contact the maintainer.
 
 
-
-///eqmodule/// courtesy to J. Song
-
+## eqmodule
+- courtesy to J. Song
   1) BlaBlaBla
 
-///Miscellaneous///
-  1) "blacs_mod.F90" in src
+## Miscellaneous
+- "blacs_mod.F90" in src
 
-    Not currently used.
+  Not currently used.
 
-  2) "interpol.f" in src
+- "interpol.f" in src
 
-    Not currently used.
+  Not currently used.
 
-  3) "blacs_mod.F90"
+- "blacs_mod.F90"
 
-    Not currently uesd.
+  Not currently uesd.
